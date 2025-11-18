@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,17 +19,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/contacts', function () 
-{
-    return "<h1>All Contacts</h1>";
-});
+Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 
-Route::get('/contacts/create', function ()
-{
-    return "<h1>Create New Contact</h1>";
-});
+Route::get('/contacts/create', [ContactsController::class, 'create'])->name('contacts.create');
 
-Route::get('/contacts/{id}', function ($id)
-{
-    return App\Models\Contact::find($id);
-});
+Route::get('/contacts/{id}', [ContactsController::class, 'show'])->name('contacts.show');
